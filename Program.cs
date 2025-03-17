@@ -45,16 +45,22 @@ builder.Services.AddAuthentication(options =>
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddScoped<AuthService>();
 
+
 // Add CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200", "http://localhost:3000", "https://*.onrender.com/", "https://netlify.app/", "https://github.io/")
-            .SetIsOriginAllowedToAllowWildcardSubdomains();
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            .AllowCredentials();
+        policy.WithOrigins(
+            "http://localhost:4200",
+            "http://localhost:3000",
+            "https://*.onrender.com/",
+            "https://*.netlify.app/"
+        )
+        .SetIsOriginAllowedToAllowWildcardSubdomains()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        .AllowCredentials();
     });
 });
 
